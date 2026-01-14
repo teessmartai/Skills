@@ -1,0 +1,11 @@
+# Recursive Language Model (RLM) Dependencies
+
+# For Anthropic Claude API
+anthropic>=0.18.0
+
+# For OpenAI API (optional)
+openai>=1.0.0
+
+# Core dependencies (usually already installed)
+# dataclasses  # Built into Python 3.7+
+# typing  # Built into Python 3.5+
