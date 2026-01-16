@@ -43,37 +43,6 @@ Before searching for activities, you MUST gather all the following information. 
 - [ ] Preference for seasonal activities aligned with weather (e.g., ice skating in winter)?
 - [ ] Any specific organizations to include or avoid (YMCA, specific studios, etc.)?
 
-### Sample Questions Script
-
-```
-I'd love to help plan activities for your kids! Let me gather some information:
-
-**About Your Children:**
-1. What are your children's names (or initials) and ages?
-2. Does anyone have special needs I should account for?
-3. What are each child's interests? (sports, music, arts, academics, dance, etc.)
-4. Are there activities anyone specifically wants to try or wants to avoid?
-
-**Logistics:**
-5. What's your location (city or zip code)?
-6. How many parents/caregivers are available for driving to activities?
-7. How many cars do you have available?
-8. What's the maximum drive time you'd accept? (I'll default to 30 minutes)
-
-**Schedule:**
-9. What time period are we planning for? (e.g., "Spring season", "next year")
-10. What days and times are generally available?
-11. Are there any existing activities already scheduled that I need to work around?
-
-**Budget:**
-12. What's your weekly/monthly budget for all activities combined?
-13. Should I include equipment costs in that budget, or is that separate?
-
-**Preferences:**
-14. Would you prefer siblings to be in the same classes when possible?
-15. Any preference for seasonal activities (ice skating in winter, swimming in summer)?
-```
-
 ## Activity Search Phase
 
 ### Search Strategy
@@ -177,118 +146,29 @@ Present the final schedule in this format:
 
 ### Visual Daily Schedule
 
-```
-### Monday Schedule
-
-3:30 PM - Parent leaves home
-3:45 PM - Drop Emma at Dance Studio ABC (Ballet 4:00-5:00)
-4:05 PM - Drive to City Park Fields (20 min)
-4:25 PM - Drop Jake at Soccer (4:30-5:30)
-4:30 PM - Parent available / return home
-5:00 PM - Pick up Emma from Ballet
-5:30 PM - Pick up Jake from Soccer
-5:50 PM - Everyone home
-```
+Include a timeline view showing parent logistics for complex days (drop-off times, drive times, pickup coordination).
 
 ### Activity Details Section
 
-For each activity in the schedule, provide:
-
-```
-### [Activity Name] - [Child Name]
-
-**Provider:** [Organization]
-**Location:** [Address]
-**Schedule:** [Day/Time]
-**Duration:** [X weeks/ongoing]
-**Cost:** $XX/week ($XX total for season)
-**Registration:** [Status - open, opens MM/DD, waitlist]
-
-**Equipment/Uniform Costs:**
-- [Item]: $XX
-- [Item]: $XX
-- **Equipment Total:** $XX
-
-**Notes:** [Any relevant details - skill level, what to bring, etc.]
-```
+For each scheduled activity, provide: Provider, Location, Schedule, Duration, Cost breakdown (tuition + equipment), Registration status, and relevant notes.
 
 ### Alternatives Section
 
-Present alternatives grouped by time slot:
-
-```
-## Alternative Options
-
-### Monday 4:00-5:00 PM Slot (Currently: Emma - Ballet)
-
-| Alternative | Location | Cost | Notes |
-|-------------|----------|------|-------|
-| Jazz Dance | Studio XYZ | $30/wk | Same skill level |
-| Gymnastics | Gym Plus | $28/wk | Beginner friendly |
-| Art Class | Community Center | $15/wk | Drop-in available |
-
-### If Budget is Flexible (+$XX/week)
-
-[List premium alternatives that exceed budget]
-
-### If Schedule Changes
-
-[List activities available at different times]
-```
+Group alternatives by time slot. Include options for: budget flexibility (+$XX/week), and schedule changes.
 
 ### Multi-Period Planning
 
-When planning spans multiple seasons/sessions:
-
-```
-## Schedule by Season
-
-### Winter Session (Jan 6 - Mar 15)
-[Weekly schedule table]
-**Period Cost:** $XXX
-
-### Spring Session (Mar 23 - Jun 7)
-[Weekly schedule table]
-**Period Cost:** $XXX
-**Changes from Winter:**
-- Emma: Ballet continues, added Softball
-- Jake: Hockey ends, starts Baseball
-
-### Registration Timeline
-| Activity | Child | Registration Opens | Action Needed |
-|----------|-------|-------------------|---------------|
-| Summer Swim | Both | Mar 1 | Mark calendar |
-| Fall Soccer | Jake | Jul 15 | Usually fills fast - register day 1 |
-```
+When planning spans multiple seasons/sessions, include:
+- Schedule table for each season with period cost
+- Changes between seasons (activities added/ending)
+- Registration timeline with dates and urgency notes
 
 ### Cost Summary
 
-```
-## Total Cost Breakdown
-
-### Weekly Costs
-| Child | Activity | Tuition | Equipment (amortized) | Total |
-|-------|----------|---------|----------------------|-------|
-| Emma | Ballet | $25 | $3 | $28 |
-| Emma | Art | $15 | $1 | $16 |
-| Jake | Soccer | $20 | $2 | $22 |
-| **Total** | | **$60** | **$6** | **$66/week** |
-
-### One-Time Equipment Costs
-| Child | Item | Cost | For Activity |
-|-------|------|------|--------------|
-| Emma | Ballet shoes | $35 | Ballet |
-| Emma | Leotard | $25 | Ballet |
-| Jake | Cleats | $45 | Soccer |
-| Jake | Shin guards | $15 | Soccer |
-| **Total** | | **$120** | |
-
-### Season/Year Projection
-- Winter session (10 weeks): $660
-- Spring session (12 weeks): $792
-- Equipment (one-time): $120
-- **Total through Spring:** $1,572
-```
+Provide comprehensive cost breakdown:
+- **Weekly costs**: Per-child breakdown with tuition and amortized equipment
+- **One-time equipment costs**: Itemized list by child and activity
+- **Season/year projection**: Total costs per session and cumulative total
 
 ## Important Reminders
 
@@ -327,24 +207,7 @@ Help families plan for equipment costs:
 ## Wrap Up
 
 After presenting the schedule, offer:
-
-1. **Adjustments**: "Would you like me to swap any activities or explore different time slots?"
-
-2. **What-If Scenarios**: "I can show you what the schedule would look like if [budget increased / another day became available / etc.]"
-
-3. **Action Items**: Provide a prioritized list of registration actions with dates
-
-4. **Calendar Export**: Offer to format the schedule for calendar import if requested
-
-5. **Seasonal Planning**: For long-term planning, note when to revisit and update the schedule
-
-```
-## Next Steps
-
-1. [ ] Register Emma for Ballet at Dance Studio ABC (open now)
-2. [ ] Join waitlist for Jake's Soccer at City Park
-3. [ ] Set reminder: Summer swim registration opens Mar 1
-4. [ ] Purchase equipment:
-   - [ ] Ballet shoes for Emma ($35)
-   - [ ] Soccer cleats for Jake ($45)
-```
+1. **Adjustments**: Swap activities or explore different time slots
+2. **What-If Scenarios**: Budget changes, additional availability
+3. **Action Items**: Prioritized registration checklist with dates and contacts
+4. **Calendar Export**: Format for calendar import if requested

@@ -49,129 +49,27 @@ Before planning, you MUST gather all the following information. Ask these questi
 - [ ] Are there specific restrictions (no homemade items, allergy-aware classroom, etc.)?
 - [ ] Does the school allow classroom celebrations?
 
-### Sample Questions Script
-
-```
-I'd love to help plan an amazing birthday! Let me gather some information:
-
-**About the Birthday Child:**
-1. What's your child's name (or initial) and how old are they turning?
-2. What's their gender?
-3. What are they really into right now? (favorite characters, hobbies, colors, activities)
-4. Do they have any theme ideas, or should I suggest some based on their interests?
-
-**Date & Location:**
-5. What's the actual birthday date?
-6. Does your child go to school or daycare?
-7. What's your location (city or zip code)? I'll search for options within 30 minutes.
-
-**Guests:**
-8. How many kids are you thinking of inviting to the party?
-9. What's the general age range of the kids who'd be invited?
-10. If we're doing a school celebration, how many kids are in the class?
-11. Are there any allergies I should know about (for the party or school treats)?
-
-**Family:**
-12. Are there any siblings? If so, what are their ages?
-13. Do any younger siblings have nap times I should plan around?
-
-**Budget:**
-14. What's your budget range for the party? (rough estimate is fine)
-
-**School (if applicable):**
-15. What's the school's policy on birthday treats? Any restrictions?
-```
-
 ## Age-Based Planning Rules
 
-Use these guidelines to tailor the party plan:
+Tailor recommendations by age group. See [age-and-season-guide.md](references/age-and-season-guide.md) for detailed rules.
 
-### Ages 1-2 (Toddler)
-- **Party Style**: Small, family-focused, short duration (1-1.5 hours max)
-- **Venue**: Home party is often best; sensory play spaces if venue desired
-- **Loot Bags**: NOT needed (they don't care or understand)
-- **Guest List**: Keep very small (family + a few close friends with kids)
-- **Food**: Simple finger foods, smash cake for birthday child
-- **Timing**: Mid-morning after first nap, or early afternoon after lunch nap
-- **Parents**: All parents stay (required for this age)
-- **School**: Not typically applicable; daycare may have own policies
-
-### Ages 3-5 (Preschool)
-- **Party Style**: Structured but simple, 1.5-2 hours
-- **Venue**: Indoor playgrounds, home parties, bounce houses, simple party rooms
-- **Loot Bags**: YES - simple items, age-appropriate toys, bubbles, stickers, playdough
-- **Guest List**: Small to medium (8-15 kids)
-- **Entertainment**: Simple activities - crafts, games, character appearance (if home party)
-- **Timing**: Avoid nap times (usually early afternoon or mid-morning)
-- **Parents**: Most parents stay, especially for 3-year-olds; some drop-off okay for 5-year-olds
-- **School**: Classroom celebration with simple treats
-
-### Ages 6-9 (Elementary)
-- **Party Style**: Activity-focused, 2-2.5 hours
-- **Venue**: Trampoline parks, bowling, skating rinks, pool parties, sports facilities, escape rooms (age 8+), home parties
-- **Loot Bags**: Optional - can do or skip; if doing, focus on useful items or candy
-- **Guest List**: Medium (10-20 kids)
-- **Entertainment**: Venue usually provides activities; if home, consider hired entertainment
-- **Timing**: Flexible; consider sibling schedules
-- **Parents**: Drop-off is standard; provide contact info
-- **School**: Treats for class, possibly small trinkets
-
-### Ages 10-12 (Tweens)
-- **Party Style**: Experience-focused, 2-3 hours
-- **Venue**: Escape rooms, laser tag, movie theater, spa parties, cooking classes, sports events, arcade/gaming centers
-- **Loot Bags**: Generally skip - experiences over stuff; maybe just candy/small item
-- **Guest List**: Smaller, closer friends (6-12 kids)
-- **Entertainment**: Venue-based activities
-- **Timing**: Flexible; later afternoon/evening can work
-- **Parents**: Definitely drop-off
-- **School**: Simple treats, may opt out entirely
+**Quick Reference:**
+| Age | Duration | Loot Bags | Parents | Key Considerations |
+|-----|----------|-----------|---------|-------------------|
+| 1-2 | 1-1.5 hrs | No | Stay | Home/sensory venues, nap timing |
+| 3-5 | 1.5-2 hrs | Yes | Most stay | Indoor playgrounds, avoid nap times |
+| 6-9 | 2-2.5 hrs | Optional | Drop-off | Activity venues (trampoline, bowling) |
+| 10-12 | 2-3 hrs | Skip | Drop-off | Experience-focused (escape rooms, spa) |
 
 ## Seasonal Considerations
 
-### Winter (December - February)
-**Recommended:**
-- Ice skating rinks
-- Indoor playgrounds
-- Trampoline parks
-- Bowling alleys
-- Indoor pool parties (heated)
-- Home parties with winter themes
+See [age-and-season-guide.md](references/age-and-season-guide.md) for seasonal venue recommendations.
 
-**Avoid:**
-- Outdoor venues
-- Park pavilions
-
-### Spring (March - May)
-**Recommended:**
-- Parks and playgrounds (with indoor backup)
-- Zoos and farms
-- Outdoor sports facilities
-- Botanical gardens
-- Home parties with outdoor option
-
-**Note:** Always have indoor backup for unpredictable weather
-
-### Summer (June - August)
-**Recommended:**
-- Splash pads and water parks
-- Outdoor pool parties
-- Beach parties (if applicable)
-- Parks with shade
-- Backyard parties
-- Mini golf
-- Outdoor movie nights
-
-**Consider:** Heat and sun protection; provide shade and hydration
-
-### Fall (September - November)
-**Recommended:**
-- Apple orchards / pumpkin patches
-- Corn mazes (age 5+)
-- Parks (early fall)
-- Indoor venues as weather cools
-- Halloween-themed parties (October)
-
-**Note:** Weather varies; have backup plans
+**Quick Reference:**
+- **Winter**: Indoor venues (trampoline, bowling, indoor pool)
+- **Spring**: Parks with indoor backup, zoos
+- **Summer**: Water activities, outdoor venues with shade
+- **Fall**: Orchards, pumpkin patches; indoor as weather cools
 
 ## Venue Search Phase
 
@@ -318,345 +216,46 @@ Research and suggest platforms:
 
 ## Food Planning
 
-### Venue-Provided Food
-Most venues offer party packages with food. Typical options:
-- Pizza (most common)
-- Chicken nuggets
-- Hot dogs
-- Mac and cheese
-- Juice boxes/water
-- Cake OR cupcakes
+See [food-and-lootbags.md](references/food-and-lootbags.md) for detailed food options and quantities.
 
-### Home Party Food Options
-
-**For Young Kids (under 6):**
-- Pizza (always a hit)
-- Chicken nuggets
-- Mac and cheese bites
-- Fruit skewers
-- Veggie cups with ranch
-- Goldfish crackers
-- Juice boxes, water
-
-**For Older Kids (6+):**
-- Pizza
-- Sliders
-- Taco bar
-- Sub sandwiches
-- Chips and dip
-- Fruit and veggie trays
-- Lemonade, water, juice
-
-**For Parents (if staying):**
-- Coffee/tea
-- Sparkling water
-- Fruit/veggie tray
-- Simple appetizers
-
-### Food Quantity Guidelines
-
-| Item | Per Child |
-|------|-----------|
-| Pizza | 2 slices |
-| Juice boxes | 1-2 |
-| Chips | Small handful |
-| Cake | 1 small slice |
-| Ice cream | 1 scoop |
-
-**Calculate for:** Invited guests + siblings + birthday child + 2-3 buffer
+**Quick Reference:**
+- Most venues include pizza, drinks, and cake
+- Calculate quantities for: guests + siblings + birthday child + 2-3 buffer
+- Per child: ~2 pizza slices, 1-2 juice boxes, 1 cake slice
 
 ## Loot Bag Planning (Ages 3-9)
 
-### Loot Bag Contents by Age
+See [food-and-lootbags.md](references/food-and-lootbags.md) for contents by age and alternatives.
 
-**Ages 3-5:**
-- Bubbles
-- Playdough (small container)
-- Stickers
-- Temporary tattoos
-- Small figurines
-- Crayons
-- Bouncy balls
-- Sidewalk chalk
-
-**Ages 6-9:**
-- Candy (variety)
-- Small toys/trinkets
-- Slime
-- Fidget toys
-- Glow sticks
-- Trading cards
-- Small craft kits
-- Themed items matching party
-
-**Budget Guide:**
-- Basic: $3-5 per bag
-- Mid-range: $5-8 per bag
-- Premium: $8-15 per bag
-
-### Skip Loot Bags If:
-- Age 2 and under (they don't understand)
-- Age 10+ (focus on experience)
-- Budget is tight (cake and activities are more important)
-- Parent prefers no plastic/junk
-
-### Alternatives to Traditional Loot Bags:
-- Book for each child
-- Donation to charity in kids' names
-- Take-home craft from party
-- Small plant or seed packet
-- Single quality item instead of bag of junk
+**Quick Reference:**
+- **Ages 3-5**: Bubbles, playdough, stickers ($3-5/bag)
+- **Ages 6-9**: Candy, slime, fidget toys ($5-8/bag)
+- **Skip if**: Age 2 and under, age 10+, or budget is tight
 
 ## Output Format
 
-### Complete Party Plan Presentation
+Present a complete party plan with the following sections:
 
-```
-## [Child's Name]'s [Age] Birthday Party Plan
+### Required Sections
+1. **Party Overview**: Child info, dates, theme, budget
+2. **School Celebration** (if applicable): Tasks checklist, treat plan with options
+3. **Venue Options**: 2-3 options with pros/cons, costs, booking info
+4. **Cake Options**: Custom bakery + budget-friendly alternative
+5. **Invitations**: Platform recommendation, timeline, key details to include
+6. **Food & Loot Bags**: Based on venue/home, age-appropriate items
+7. **Budget Summary**: Category breakdown with total and budget status
+8. **Master Timeline**: Checklist by week (3-4 weeks, 2 weeks, 1 week, day before, day of)
+9. **Backup Plan**: For weather-dependent venues
 
-### Party Overview
-- **Birthday Child**: [Name], turning [age]
-- **Birthday Date**: [Date] ([Day of week] - school day/weekend)
-- **Party Date**: [Date if different]
-- **Theme**: [Theme]
-- **Budget**: $[amount]
-
----
-
-## School Celebration (if applicable)
-
-### Tasks
-- [ ] Call [School Name] to confirm birthday policy - Do by [date]
-- [ ] Confirm class allergies with teacher
-- [ ] Order/purchase treats by [date]
-- [ ] Deliver treats on [birthday date] at [time]
-
-### Treat Plan
-**Option 1**: [Treat] from [Store] - $[cost] for [quantity]
-**Option 2**: [Treat] from [Store] - $[cost] for [quantity]
-
-**Recommendation**: [Your recommendation based on school policy and allergies]
-
----
-
-## Party Venue Options
-
-### Option 1: [Venue Name] (Recommended)
-**Type**: [Indoor playground / Trampoline park / etc.]
-**Address**: [Address]
-**Distance**: [X] minutes from home
-**Duration**: [X] hours
-
-**Package Details:**
-- [What's included]
-- Capacity: Up to [X] kids
-- Food: [What's included]
-- Cost: $[base] + $[per child] per additional child
-- **Total Estimated Cost**: $[amount] for [X] kids
-
-**Pros:**
-- [Pro 1]
-- [Pro 2]
-
-**Cons:**
-- [Con 1]
-
-**Book by**: [Date] | **Contact**: [Phone/website]
-
----
-
-### Option 2: [Venue Name]
-[Same format as Option 1]
-
----
-
-### Option 3: Home Party
-**Estimated Cost Breakdown:**
-- Entertainment ([type]): $[cost]
-- Rentals ([items]): $[cost]
-- Decorations: $[cost]
-- Food: $[cost]
-- **Total**: $[amount]
-
-**Entertainment Options Researched:**
-| Provider | Service | Cost | Contact |
-|----------|---------|------|---------|
-| [Name] | [Service] | $[cost] | [contact] |
-
----
-
-## Cake Options
-
-### Option 1: [Bakery Name] (Recommended)
-- **Location**: [Address] - [X] min away
-- **Style**: Custom [theme] cake
-- **Size**: [Serves X]
-- **Price**: $[amount]
-- **Lead Time**: Order [X] days ahead
-- **Contact**: [Phone/website]
-
-### Option 2: [Store/Bakery]
-[Details]
-
-### Budget-Friendly Option: [Grocery Store]
-[Details]
-
----
-
-## Invitations
-
-### Recommended Platform: [Platform]
-- **Cost**: [Free / $X]
-- **Features**: RSVP tracking, reminders, guest messaging
-
-### Timeline
-| Date | Action |
-|------|--------|
-| [Date] | Send invitations |
-| [Date] | Follow up with non-responders |
-| [Date] | Final headcount - confirm with venue |
-| [Date] | Send reminder to guests |
-
-### Key Details for Invitation
-- Date: [Date]
-- Time: [Start] - [End]
-- Location: [Venue + Address]
-- Attire: [Special instructions]
-- RSVP by: [Date]
-- RSVP to: [Contact]
-
----
-
-## Food Plan
-
-[If venue provides]:
-**Venue Package Includes:**
-- [Food items]
-
-**Additional Items to Bring/Order:**
-- [Items]
-
-[If home party or supplementing]:
-**Food to Order/Prepare:**
-| Item | Quantity | Source | Cost |
-|------|----------|--------|------|
-| [Item] | [Qty] | [Where] | $[cost] |
-
----
-
-## Loot Bags
-
-[Include only if age-appropriate: 3-9]
-
-### Contents Plan
-| Item | Quantity Needed | Source | Cost Each | Total |
-|------|-----------------|--------|-----------|-------|
-| [Item] | [X] | [Store] | $[X] | $[X] |
-
-**Total Loot Bag Cost**: $[amount] for [X] bags
-
----
-
-## Complete Budget Summary
-
-| Category | Estimated Cost |
-|----------|---------------|
-| Venue/Party | $[amount] |
-| Cake | $[amount] |
-| Loot Bags | $[amount] |
-| Invitations | $[amount] |
-| School Treats | $[amount] |
-| Additional Food | $[amount] |
-| Decorations | $[amount] |
-| **TOTAL** | **$[amount]** |
-
-**Budget Status**: $[X] under/over budget
-
----
-
-## Master Timeline & Checklist
-
-### 3-4 Weeks Before
-- [ ] Book venue (call [Venue] at [number])
-- [ ] Send digital invitations
-- [ ] Order cake (call [Bakery] at [number])
-- [ ] Call school about birthday policy
-
-### 2 Weeks Before
-- [ ] Follow up on RSVPs
-- [ ] Order/purchase loot bag items
-- [ ] Confirm any entertainment bookings
-
-### 1 Week Before
-- [ ] Final headcount to venue
-- [ ] Confirm cake order
-- [ ] Purchase school treats
-- [ ] Purchase any additional party supplies
-
-### 2-3 Days Before
-- [ ] Send party reminder to guests
-- [ ] Prepare loot bags
-- [ ] Confirm all bookings
-
-### Day Before
-- [ ] Pick up cake (if not day-of)
-- [ ] Pack party supplies
-- [ ] Charge camera/phone
-
-### Party Day
-- [ ] [Time]: [School treat delivery if applicable]
-- [ ] [Time]: Arrive at venue for setup
-- [ ] [Time]: Party starts
-- [ ] [Time]: Party ends
-
----
-
-## Backup Plan
-
-[For outdoor venues or weather-dependent activities]
-
-**If weather is bad:**
-- Primary backup: [Indoor alternative]
-- Backup venue option: [Venue + contact]
-- Decision deadline: [When to make the call]
-```
-
-## RSVP Tracking Template
-
-Provide a tracking format:
-
-```
-## RSVP Tracker
-
-| Guest Name | Parent Contact | RSVP Status | # Kids | Allergies | Notes |
-|------------|---------------|-------------|--------|-----------|-------|
-| [Name] | [Phone/Email] | Yes/No/Pending | [#] | [Any] | [Notes] |
-
-**Confirmed**: X guests
-**Pending**: X guests
-**Declined**: X guests
-**Total Expected**: X kids + X adults
-```
+### For Each Venue Option Include
+- Type, address, distance, duration
+- Package details: capacity, food, costs
+- Pros and cons
+- Booking deadline and contact info
 
 ## Wrap Up
 
 After presenting the plan, offer:
-
-1. **Selection Help**: "Would you like me to compare any of these options in more detail?"
-
-2. **Adjustments**: "Should I search for different venue types or adjust the budget allocation?"
-
-3. **Alternatives**: "I can research more options if none of these feel right."
-
-4. **Questions**: "Do you have any questions about the timeline or any of the vendors?"
-
-5. **Next Steps**: Provide clear action items with contact information and deadlines
-
-```
-## Immediate Action Items
-
-1. [ ] BOOK VENUE: Call [Venue] at [number] - Book by [date]
-2. [ ] ORDER CAKE: Call [Bakery] at [number] - Order by [date]
-3. [ ] SEND INVITES: Create invitation on [Platform] - Send by [date]
-4. [ ] CALL SCHOOL: Contact [School] at [number] - Call by [date]
-```
+1. **Comparisons**: Compare venues or options in detail
+2. **Adjustments**: Different venue types or budget allocation
+3. **Action Items**: Prioritized checklist with contacts and deadlines
