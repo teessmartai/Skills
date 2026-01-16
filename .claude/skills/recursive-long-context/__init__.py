@@ -10,11 +10,18 @@ Based on "Recursive Language Models" paper from MIT CSAIL.
 Usage:
     from recursive_long_context import run_rlm, RecursiveLanguageModel, RLMConfig
 
-    # Simple usage
+    # Simple usage with API
     answer = run_rlm(
         query="Your question here",
         context=your_long_context,
         api_provider="anthropic"
+    )
+
+    # Using Claude Code CLI (no API key needed)
+    answer = run_rlm(
+        query="Your question here",
+        context=your_long_context,
+        api_provider="claude-code"
     )
 
     # Advanced usage
@@ -39,6 +46,7 @@ from .rlm import (
     LLMProvider,
     AnthropicProvider,
     OpenAIProvider,
+    ClaudeCodeProvider,
     run_rlm,
 )
 
@@ -55,5 +63,6 @@ __all__ = [
     "LLMProvider",
     "AnthropicProvider",
     "OpenAIProvider",
+    "ClaudeCodeProvider",
     "run_rlm",
 ]
