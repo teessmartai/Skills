@@ -31,7 +31,7 @@ class RLMConfig:
     max_output_chars: int = 30000  # Truncate REPL output to avoid context overflow
     timeout_per_execution: int = 300  # 5 minutes per code execution
     verbose: bool = True
-    api_provider: str = "anthropic"  # "anthropic", "openai", or "custom"
+    api_provider: str = "anthropic"  # "anthropic", "openai", or "claude-code"
     api_key: Optional[str] = None
 
 
@@ -153,6 +153,97 @@ class OpenAIProvider(LLMProvider):
         cost = (input_tokens * 0.005 + output_tokens * 0.015) / 1000
 
         return response_text, cost, input_tokens + output_tokens
+
+
+class ClaudeCodeProvider(LLMProvider):
+    """
+    Claude Code CLI provider.
+
+    Uses the 'claude' command-line tool instead of direct API calls.
+    This allows users to leverage their existing Claude Code setup
+    without needing separate API keys.
+    """
+
+    def __init__(self, model: Optional[str] = None):
+        """
+        Initialize the Claude Code provider.
+
+        Args:
+            model: Optional model to use (e.g., 'sonnet', 'opus', 'haiku').
+                   If not specified, uses Claude Code's default model.
+        """
+        self.model = model
+        self._check_claude_available()
+
+    def _check_claude_available(self):
+        """Check if the claude CLI is available."""
+        import subprocess
+        import shutil
+
+        if shutil.which("claude") is None:
+            raise RuntimeError(
+                "Claude Code CLI not found. Please install Claude Code: "
+                "https://docs.anthropic.com/en/docs/claude-code"
+            )
+
+    def query(self, prompt: str, system_prompt: Optional[str] = None) -> Tuple[str, float, int]:
+        """
+        Query Claude using the Claude Code CLI.
+
+        Args:
+            prompt: The user prompt
+            system_prompt: Optional system prompt (prepended to user prompt)
+
+        Returns:
+            Tuple of (response_text, cost, token_count)
+            Note: cost is always 0 (handled by Claude Code subscription)
+                  token_count is estimated based on response length
+        """
+        import subprocess
+
+        # Combine system prompt and user prompt
+        full_prompt = prompt
+        if system_prompt:
+            full_prompt = f"{system_prompt}\n\n{prompt}"
+
+        # Build the command
+        cmd = ["claude", "-p"]  # -p for print mode (non-interactive)
+
+        # Add model flag if specified
+        if self.model:
+            cmd.extend(["--model", self.model])
+
+        # Add max tokens flag
+        cmd.extend(["--max-tokens", "8192"])
+
+        try:
+            # Run claude with the prompt via stdin
+            result = subprocess.run(
+                cmd,
+                input=full_prompt,
+                capture_output=True,
+                text=True,
+                timeout=300  # 5 minute timeout
+            )
+
+            if result.returncode != 0:
+                error_msg = result.stderr or "Unknown error"
+                raise RuntimeError(f"Claude Code CLI error: {error_msg}")
+
+            response_text = result.stdout.strip()
+
+            # Estimate tokens (rough approximation: ~4 chars per token)
+            estimated_input_tokens = len(full_prompt) // 4
+            estimated_output_tokens = len(response_text) // 4
+            estimated_tokens = estimated_input_tokens + estimated_output_tokens
+
+            # Cost is 0 for Claude Code CLI (handled by subscription)
+            return response_text, 0.0, estimated_tokens
+
+        except subprocess.TimeoutExpired:
+            raise RuntimeError("Claude Code CLI timed out after 5 minutes")
+        except FileNotFoundError:
+            raise RuntimeError("Claude Code CLI not found. Is it installed and in PATH?")
 
 
 class REPLEnvironment:
@@ -305,6 +396,8 @@ Think step by step. Execute code in your response. Remember to answer the origin
                 api_key=self.config.api_key,
                 model=model or "gpt-4o"
             )
+        elif self.config.api_provider == "claude-code":
+            return ClaudeCodeProvider(model=model)
         else:
             raise ValueError(f"Unknown API provider: {self.config.api_provider}")
 
@@ -518,8 +611,8 @@ def run_rlm(
     Args:
         query: The question/task to answer
         context: The long context (string or list of strings)
-        api_provider: "anthropic" or "openai"
-        api_key: API key (or set via environment variable)
+        api_provider: "anthropic", "openai", or "claude-code"
+        api_key: API key (or set via environment variable, not needed for claude-code)
         root_model: Model for root LLM
         sub_model: Model for sub-calls (defaults to root_model)
         max_iterations: Maximum REPL iterations
@@ -567,5 +660,12 @@ if __name__ == "__main__":
     print('  rlm = RecursiveLanguageModel(config)')
     print('  answer = rlm.run(query, context)')
     print('  trajectory = rlm.get_trajectory()')
+    print()
+    print("  # Using Claude Code (no API key needed)")
+    print('  answer = run_rlm(')
+    print('      query="What is the main topic of this document?",')
+    print('      context=long_document_text,')
+    print('      api_provider="claude-code"')
+    print('  )')
     print()
     print("See examples/ directory for complete examples.")

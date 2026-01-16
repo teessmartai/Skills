@@ -111,6 +111,12 @@ Examples:
 
   # Specify model and save trajectory
   python cli.py -q "Analyze the code" -f code.py --provider openai --model gpt-4o --save-trajectory results.json
+
+  # Use Claude Code CLI (no API key needed)
+  python cli.py -q "Summarize this document" -f report.txt --provider claude-code
+
+  # Use Claude Code with a specific model
+  python cli.py -q "Analyze the code" -f code.py --provider claude-code --model sonnet
         """
     )
 
@@ -139,13 +145,13 @@ Examples:
     # API configuration
     parser.add_argument(
         '--provider',
-        choices=['anthropic', 'openai'],
+        choices=['anthropic', 'openai', 'claude-code'],
         default='anthropic',
-        help='LLM API provider (default: anthropic)'
+        help='LLM API provider (default: anthropic). Use "claude-code" to use the Claude Code CLI instead of API.'
     )
     parser.add_argument(
         '--api-key',
-        help='API key (or set ANTHROPIC_API_KEY/OPENAI_API_KEY env var)'
+        help='API key (or set ANTHROPIC_API_KEY/OPENAI_API_KEY env var). Not needed for claude-code provider.'
     )
     parser.add_argument(
         '--model',
