@@ -25,6 +25,38 @@ export ANTHROPIC_API_KEY="your-key"
 # OR use Claude Code provider (no key needed)
 ```
 
+## Running with Claude Code
+
+All benchmark scripts support Claude Code as a provider. This uses your Claude Code subscription instead of direct API calls (no API key required).
+
+### Quick Test (Verify Setup)
+
+```bash
+# Run quick sanity test with Claude Code
+python benchmarks/quick_test.py --provider claude-code
+
+# Run all test types
+python benchmarks/quick_test.py --provider claude-code --all
+```
+
+### Run Full Benchmarks
+
+```bash
+# OOLONG benchmark
+python benchmarks/run_oolong.py --provider claude-code --max-tasks 10
+
+# BrowseComp+ benchmark
+python benchmarks/run_browsecomp.py --provider claude-code --num-docs 100 --max-tasks 5
+```
+
+### Provider Comparison
+
+| Provider | Flag | Cost | API Key Required |
+|----------|------|------|------------------|
+| Claude Code | `--provider claude-code` | $0 (subscription) | No |
+| Anthropic API | `--provider anthropic` | Per-token | Yes |
+| OpenAI API | `--provider openai` | Per-token | Yes |
+
 ## 1. OOLONG Benchmark (Recommended Starting Point)
 
 OOLONG is the most accessible benchmark - 50 tasks, ~131K tokens, tests O(N) complexity.
@@ -105,6 +137,81 @@ code_qa = [x for x in dataset if x["domain"] == "code_repo_understanding"]
 | OOLONG-Pairs | F1 Score | 58.00% |
 | BrowseComp+ (1K) | Accuracy % | 91.33% |
 | CodeQA | Accuracy % | 62.00% |
+
+## Baseline Comparisons (RLM vs Standard LLM)
+
+The benchmark scripts currently only run with RLM. To compare against a baseline (standard LLM without RLM), you can run direct queries through the Anthropic/OpenAI API on the same tasks.
+
+**Paper-reported baseline comparisons:**
+
+| Benchmark | Baseline (Standard) | With RLM | Improvement |
+|-----------|---------------------|----------|-------------|
+| S-NIAH (4M tokens) | ~0% | ~95-100% | Massive |
+| OOLONG | 44.93% | 56.50% | +11.57% |
+| OOLONG-Pairs | 50.10% | 58.00% | +7.90% |
+| BrowseComp+ (1K docs) | 5.77%* | 91.33% | +85.56% |
+| CodeQA | 53.00% | 62.00% | +9.00% |
+
+*\*BrowseComp+ baseline uses RAG retrieval since full context exceeds model limits*
+
+**Key insight:** The larger the context, the more dramatic the improvement. Standard LLMs suffer from "context rot" on very long inputs, while RLM maintains accuracy by processing content programmatically.
+
+**Running your own baselines:**
+
+Using Anthropic API:
+```python
+# Baseline (direct query without RLM)
+from anthropic import Anthropic
+client = Anthropic()
+response = client.messages.create(
+    model="claude-sonnet-4-20250514",
+    max_tokens=4096,
+    messages=[{"role": "user", "content": f"{context}\n\nQuestion: {query}"}]
+)
+baseline_answer = response.content[0].text
+
+# RLM (recursive processing)
+from rlm import run_rlm
+rlm_answer = run_rlm(query, context, api_provider="anthropic")
+```
+
+Using Claude Code CLI:
+```bash
+# Baseline (direct query without RLM)
+echo "Context: $CONTEXT
+
+Question: $QUERY" | claude -p --max-tokens 4096
+
+# RLM (recursive processing)
+python -c "
+from rlm import run_rlm
+answer = run_rlm('$QUERY', open('context.txt').read(), api_provider='claude-code')
+print(answer)
+"
+```
+
+Using Claude Code in Python:
+```python
+import subprocess
+
+# Baseline (direct query without RLM via Claude Code CLI)
+def claude_baseline(query: str, context: str) -> str:
+    prompt = f"{context}\n\nQuestion: {query}"
+    result = subprocess.run(
+        ["claude", "-p", "--max-tokens", "4096"],
+        input=prompt, capture_output=True, text=True
+    )
+    return result.stdout.strip()
+
+# RLM with Claude Code
+from rlm import run_rlm
+rlm_answer = run_rlm(query, context, api_provider="claude-code")
+
+# Compare
+baseline = claude_baseline(query, context)
+print(f"Baseline: {baseline}")
+print(f"RLM: {rlm_answer}")
+```
 
 ## Cost Estimates
 
