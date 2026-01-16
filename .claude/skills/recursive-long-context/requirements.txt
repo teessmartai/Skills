@@ -6,6 +6,9 @@ anthropic>=0.18.0
 # For OpenAI API (optional)
 openai>=1.0.0
 
+# For running benchmarks (optional)
+datasets>=2.14.0  # HuggingFace datasets for OOLONG, BrowseComp+, etc.
+
 # Core dependencies (usually already installed)
 # dataclasses  # Built into Python 3.7+
 # typing  # Built into Python 3.5+
