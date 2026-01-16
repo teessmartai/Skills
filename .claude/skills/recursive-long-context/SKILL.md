@@ -58,34 +58,6 @@ python cli.py -q "Find all mentions of pricing" -d ./documents/
 python cli.py -q "Count entries by category" -f data.txt --provider anthropic --max-iterations 15
 ```
 
-### Claude Code Usage
-
-When using Claude Code CLI, this skill is automatically available. Simply describe your task involving long content, and Claude will apply RLM processing when appropriate.
-
-**Example prompts:**
-```
-# Analyzing large documents
-"Summarize all the key findings from this 500-page research paper"
-(then provide the file path or paste content)
-
-# Processing large codebases
-"Find all functions that handle user authentication across this codebase"
-
-# Aggregating data from many files
-"Count how many TODO comments exist in each file and categorize by priority"
-
-# Multi-hop reasoning
-"Find all places where function X is called, then trace what data flows into those calls"
-```
-
-**When Claude Code uses this skill:**
-- Documents exceeding ~100K tokens
-- Tasks requiring analysis of many files simultaneously
-- Questions needing multi-hop reasoning across large contexts
-- Data aggregation across datasets too large for single-pass processing
-
-The skill processes content recursively - examining, filtering, and analyzing in chunks - rather than trying to fit everything into a single context window.
-
 ## Core Concept
 
 Traditional LLMs struggle with long contexts due to "context rot." RLMs solve this by:
