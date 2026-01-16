@@ -31,8 +31,9 @@ class RLMConfig:
     max_output_chars: int = 30000  # Truncate REPL output to avoid context overflow
     timeout_per_execution: int = 300  # 5 minutes per code execution
     verbose: bool = True
-    api_provider: str = "anthropic"  # "anthropic", "openai", or "custom"
+    api_provider: str = "claude-code"  # "claude-code", "anthropic", "openai", or "custom"
     api_key: Optional[str] = None
+    cwd: Optional[str] = None  # Working directory for Claude Code
 
 
 @dataclass
@@ -153,6 +154,125 @@ class OpenAIProvider(LLMProvider):
         cost = (input_tokens * 0.005 + output_tokens * 0.015) / 1000
 
         return response_text, cost, input_tokens + output_tokens
+
+
+class ClaudeCodeProvider(LLMProvider):
+    """
+    Claude Code provider using the Claude Agent SDK.
+
+    Uses your existing Claude Code installation and authentication.
+    No separate API key required - uses your Claude Code subscription.
+    """
+
+    def __init__(self, model: Optional[str] = None, cwd: Optional[str] = None):
+        self.model = model  # Currently ignored, uses Claude Code's default
+        self.cwd = cwd
+        self._sdk_available = None
+
+    def _check_sdk(self):
+        """Check if Claude Agent SDK is available."""
+        if self._sdk_available is None:
+            try:
+                import claude_agent_sdk
+                self._sdk_available = True
+            except ImportError:
+                self._sdk_available = False
+        return self._sdk_available
+
+    def query(self, prompt: str, system_prompt: Optional[str] = None) -> Tuple[str, float, int]:
+        """Query Claude Code using the Claude Agent SDK."""
+        if not self._check_sdk():
+            raise ImportError(
+                "Claude Agent SDK not found. Install with: pip install claude-agent-sdk\n"
+                "Alternatively, use api_provider='anthropic' with an API key."
+            )
+
+        import anyio
+        from claude_agent_sdk import query as sdk_query, ClaudeAgentOptions, AssistantMessage, TextBlock
+
+        async def _run_query():
+            options = ClaudeAgentOptions(
+                system_prompt=system_prompt or "You are a helpful assistant.",
+                max_turns=1,
+                allowed_tools=[],  # No tools for sub-queries
+            )
+            if self.cwd:
+                options.cwd = self.cwd
+
+            response_text = ""
+            async for message in sdk_query(prompt=prompt, options=options):
+                if isinstance(message, AssistantMessage):
+                    for block in message.content:
+                        if isinstance(block, TextBlock):
+                            response_text += block.text
+
+            return response_text
+
+        response_text = anyio.run(_run_query)
+
+        # Claude Code doesn't expose token counts or costs directly
+        # Estimate based on character count (rough approximation)
+        estimated_tokens = (len(prompt) + len(response_text)) // 4
+        cost = 0.0  # Cost is handled by Claude Code subscription
+
+        return response_text, cost, estimated_tokens
+
+
+class ClaudeCodeCLIProvider(LLMProvider):
+    """
+    Claude Code provider using CLI subprocess (fallback).
+
+    Uses `claude -p` for non-interactive queries.
+    Simpler but less feature-rich than SDK approach.
+    """
+
+    def __init__(self, model: Optional[str] = None, cwd: Optional[str] = None):
+        self.model = model
+        self.cwd = cwd
+
+    def query(self, prompt: str, system_prompt: Optional[str] = None) -> Tuple[str, float, int]:
+        """Query Claude Code using CLI subprocess."""
+        import subprocess
+        import shutil
+
+        # Check if claude CLI is available
+        claude_path = shutil.which("claude")
+        if not claude_path:
+            raise FileNotFoundError(
+                "Claude Code CLI not found. Please install Claude Code or use a different provider.\n"
+                "Install: https://docs.anthropic.com/en/docs/claude-code\n"
+                "Or use api_provider='anthropic' with an API key."
+            )
+
+        # Build command
+        cmd = [claude_path, "-p", prompt]
+
+        # Add system prompt if provided
+        if system_prompt:
+            cmd.extend(["--system-prompt", system_prompt])
+
+        try:
+            result = subprocess.run(
+                cmd,
+                capture_output=True,
+                text=True,
+                timeout=300,
+                cwd=self.cwd
+            )
+
+            if result.returncode != 0:
+                raise RuntimeError(f"Claude Code CLI failed: {result.stderr}")
+
+            response_text = result.stdout.strip()
+
+        except subprocess.TimeoutExpired:
+            raise TimeoutError("Claude Code CLI timed out after 300 seconds")
+
+        # Estimate tokens (CLI doesn't provide this)
+        estimated_tokens = (len(prompt) + len(response_text)) // 4
+        cost = 0.0  # Cost handled by subscription
+
+        return response_text, cost, estimated_tokens
 
 
 class REPLEnvironment:
@@ -295,7 +415,20 @@ Think step by step. Execute code in your response. Remember to answer the origin
 
     def _create_provider(self, model: Optional[str] = None) -> LLMProvider:
         """Create an LLM provider based on config."""
-        if self.config.api_provider == "anthropic":
+        if self.config.api_provider == "claude-code":
+            # Try SDK first, fall back to CLI
+            try:
+                provider = ClaudeCodeProvider(model=model, cwd=self.config.cwd)
+                provider._check_sdk()  # Verify SDK is available
+                if provider._sdk_available:
+                    return provider
+            except Exception:
+                pass
+            # Fall back to CLI
+            return ClaudeCodeCLIProvider(model=model, cwd=self.config.cwd)
+        elif self.config.api_provider == "claude-code-cli":
+            return ClaudeCodeCLIProvider(model=model, cwd=self.config.cwd)
+        elif self.config.api_provider == "anthropic":
             return AnthropicProvider(
                 api_key=self.config.api_key,
                 model=model or "claude-sonnet-4-20250514"
@@ -306,7 +439,8 @@ Think step by step. Execute code in your response. Remember to answer the origin
                 model=model or "gpt-4o"
             )
         else:
-            raise ValueError(f"Unknown API provider: {self.config.api_provider}")
+            raise ValueError(f"Unknown API provider: {self.config.api_provider}. "
+                           f"Valid options: claude-code, claude-code-cli, anthropic, openai")
 
     def _llm_query(self, prompt: str) -> str:
         """
@@ -505,12 +639,13 @@ Think step by step. Execute code in your response. Remember to answer the origin
 def run_rlm(
     query: str,
     context: Union[str, List[str]],
-    api_provider: str = "anthropic",
+    api_provider: str = "claude-code",
     api_key: Optional[str] = None,
     root_model: Optional[str] = None,
     sub_model: Optional[str] = None,
     max_iterations: int = 20,
-    verbose: bool = True
+    verbose: bool = True,
+    cwd: Optional[str] = None
 ) -> str:
     """
     Convenience function to run RLM.
@@ -518,12 +653,13 @@ def run_rlm(
     Args:
         query: The question/task to answer
         context: The long context (string or list of strings)
-        api_provider: "anthropic" or "openai"
-        api_key: API key (or set via environment variable)
-        root_model: Model for root LLM
+        api_provider: "claude-code" (default), "claude-code-cli", "anthropic", or "openai"
+        api_key: API key (only needed for anthropic/openai providers)
+        root_model: Model for root LLM (ignored for claude-code)
         sub_model: Model for sub-calls (defaults to root_model)
         max_iterations: Maximum REPL iterations
         verbose: Print progress
+        cwd: Working directory for Claude Code
 
     Returns:
         The final answer string
@@ -534,7 +670,8 @@ def run_rlm(
         root_model=root_model,
         sub_model=sub_model,
         max_iterations=max_iterations,
-        verbose=verbose
+        verbose=verbose,
+        cwd=cwd
     )
 
     rlm = RecursiveLanguageModel(config)
@@ -546,21 +683,31 @@ if __name__ == "__main__":
     print("Recursive Language Model (RLM) Implementation")
     print("=" * 50)
     print()
+    print("Providers:")
+    print("  - claude-code (default): Uses Claude Code via SDK or CLI")
+    print("  - claude-code-cli: Uses Claude Code CLI directly")
+    print("  - anthropic: Uses Anthropic API directly (requires API key)")
+    print("  - openai: Uses OpenAI API directly (requires API key)")
+    print()
     print("Usage:")
     print("  from rlm import run_rlm, RecursiveLanguageModel, RLMConfig")
     print()
-    print("  # Simple usage")
+    print("  # Simple usage with Claude Code (default, no API key needed)")
+    print('  answer = run_rlm(')
+    print('      query="What is the main topic of this document?",')
+    print('      context=long_document_text')
+    print('  )')
+    print()
+    print("  # With Anthropic API directly")
     print('  answer = run_rlm(')
     print('      query="What is the main topic of this document?",')
     print('      context=long_document_text,')
-    print('      api_provider="anthropic"')
+    print('      api_provider="anthropic"  # Requires ANTHROPIC_API_KEY')
     print('  )')
     print()
     print("  # Advanced usage with config")
     print('  config = RLMConfig(')
-    print('      api_provider="anthropic",')
-    print('      root_model="claude-sonnet-4-20250514",')
-    print('      sub_model="claude-sonnet-4-20250514",')
+    print('      api_provider="claude-code",  # Uses your Claude Code subscription')
     print('      max_iterations=15,')
     print('      verbose=True')
     print('  )')

@@ -1,9 +1,13 @@
 # Recursive Language Model (RLM) Dependencies
 
-# For Anthropic Claude API
+# For Claude Code integration (recommended - uses your existing subscription)
+claude-agent-sdk>=0.1.0
+anyio>=4.0.0
+
+# For Anthropic Claude API (alternative - requires API key)
 anthropic>=0.18.0
 
-# For OpenAI API (optional)
+# For OpenAI API (alternative - requires API key)
 openai>=1.0.0
 
 # Core dependencies (usually already installed)

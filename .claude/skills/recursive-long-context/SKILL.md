@@ -12,16 +12,8 @@ Process arbitrarily long inputs by treating them as an external environment that
 ### Installation
 
 ```bash
-cd Skills/recursive-long-context
+cd .claude/skills/recursive-long-context
 pip install -r requirements.txt
-```
-
-### Set API Key
-
-```bash
-export ANTHROPIC_API_KEY="your-api-key"  # For Anthropic Claude
-# OR
-export OPENAI_API_KEY="your-api-key"     # For OpenAI
 ```
 
 ### Python Usage
@@ -29,19 +21,16 @@ export OPENAI_API_KEY="your-api-key"     # For OpenAI
 ```python
 from rlm import run_rlm, RecursiveLanguageModel, RLMConfig
 
-# Simple usage
+# Simple usage with Claude Code (default - uses your subscription)
 answer = run_rlm(
     query="What are the main findings in this document?",
     context=your_long_document,
-    api_provider="anthropic",
     verbose=True
 )
 
 # Advanced usage with configuration
 config = RLMConfig(
-    api_provider="anthropic",
-    root_model="claude-sonnet-4-20250514",
-    sub_model="claude-sonnet-4-20250514",
+    api_provider="claude-code",  # Default - no API key needed
     max_iterations=20,
     verbose=True
 )
@@ -50,13 +39,44 @@ rlm = RecursiveLanguageModel(config)
 answer = rlm.run(query, context)
 ```
 
+### Alternative: Direct API Usage
+
+If you prefer direct API access instead of Claude Code:
+
+```bash
+export ANTHROPIC_API_KEY="your-api-key"  # For Anthropic
+# OR
+export OPENAI_API_KEY="your-api-key"     # For OpenAI
+```
+
+```python
+# With Anthropic API directly
+answer = run_rlm(
+    query="Analyze this document",
+    context=document,
+    api_provider="anthropic"  # Requires ANTHROPIC_API_KEY
+)
+```
+
 ### Command Line Usage
 
 ```bash
+# Using Claude Code (default)
 python cli.py -q "Summarize the main findings" -f document.txt
 python cli.py -q "Find all mentions of pricing" -d ./documents/
-python cli.py -q "Count entries by category" -f data.txt --provider anthropic --max-iterations 15
+
+# Using Anthropic API directly
+python cli.py -q "Count entries by category" -f data.txt --provider anthropic
 ```
+
+### Available Providers
+
+| Provider | Description | API Key Required |
+|----------|-------------|------------------|
+| `claude-code` | Claude Code SDK (default) | No (uses subscription) |
+| `claude-code-cli` | Claude Code CLI fallback | No (uses subscription) |
+| `anthropic` | Anthropic API directly | Yes |
+| `openai` | OpenAI API directly | Yes |
 
 ## Core Concept
 

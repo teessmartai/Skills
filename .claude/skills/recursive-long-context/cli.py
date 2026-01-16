@@ -100,7 +100,7 @@ def main():
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
-  # Process a single file
+  # Process a single file (uses Claude Code by default)
   python cli.py -q "Summarize the main findings" -f report.txt
 
   # Process a directory of documents
@@ -109,8 +109,14 @@ Examples:
   # Use direct context input
   python cli.py -q "Count the items" -c "item1\\nitem2\\nitem3"
 
-  # Specify model and save trajectory
-  python cli.py -q "Analyze the code" -f code.py --provider openai --model gpt-4o --save-trajectory results.json
+  # Use Anthropic API directly (requires API key)
+  python cli.py -q "Analyze the data" -f data.txt --provider anthropic
+
+  # Use OpenAI API directly (requires API key)
+  python cli.py -q "Analyze the code" -f code.py --provider openai --model gpt-4o
+
+  # Save trajectory for debugging
+  python cli.py -q "Complex analysis" -f data.txt --save-trajectory results.json
         """
     )
 
@@ -139,13 +145,14 @@ Examples:
     # API configuration
     parser.add_argument(
         '--provider',
-        choices=['anthropic', 'openai'],
-        default='anthropic',
-        help='LLM API provider (default: anthropic)'
+        choices=['claude-code', 'claude-code-cli', 'anthropic', 'openai'],
+        default='claude-code',
+        help='LLM provider: claude-code (default, uses Claude Code subscription), '
+             'claude-code-cli (CLI fallback), anthropic (API), openai (API)'
     )
     parser.add_argument(
         '--api-key',
-        help='API key (or set ANTHROPIC_API_KEY/OPENAI_API_KEY env var)'
+        help='API key (only needed for anthropic/openai providers)'
     )
     parser.add_argument(
         '--model',
