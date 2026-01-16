@@ -106,6 +106,41 @@ code_qa = [x for x in dataset if x["domain"] == "code_repo_understanding"]
 | BrowseComp+ (1K) | Accuracy % | 91.33% |
 | CodeQA | Accuracy % | 62.00% |
 
+## Baseline Comparisons (RLM vs Standard LLM)
+
+The benchmark scripts currently only run with RLM. To compare against a baseline (standard LLM without RLM), you can run direct queries through the Anthropic/OpenAI API on the same tasks.
+
+**Paper-reported baseline comparisons:**
+
+| Benchmark | Baseline (Standard) | With RLM | Improvement |
+|-----------|---------------------|----------|-------------|
+| S-NIAH (4M tokens) | ~0% | ~95-100% | Massive |
+| OOLONG | 44.93% | 56.50% | +11.57% |
+| OOLONG-Pairs | 50.10% | 58.00% | +7.90% |
+| BrowseComp+ (1K docs) | 5.77%* | 91.33% | +85.56% |
+| CodeQA | 53.00% | 62.00% | +9.00% |
+
+*\*BrowseComp+ baseline uses RAG retrieval since full context exceeds model limits*
+
+**Key insight:** The larger the context, the more dramatic the improvement. Standard LLMs suffer from "context rot" on very long inputs, while RLM maintains accuracy by processing content programmatically.
+
+**Running your own baselines:**
+```python
+# Baseline (direct query without RLM)
+from anthropic import Anthropic
+client = Anthropic()
+response = client.messages.create(
+    model="claude-sonnet-4-20250514",
+    max_tokens=4096,
+    messages=[{"role": "user", "content": f"{context}\n\nQuestion: {query}"}]
+)
+baseline_answer = response.content[0].text
+
+# RLM (recursive processing)
+from rlm import run_rlm
+rlm_answer = run_rlm(query, context, api_provider="anthropic")
+```
+
 ## Cost Estimates
 
 Based on paper's experiments:
