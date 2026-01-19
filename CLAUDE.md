@@ -8,6 +8,7 @@ This repository is a collection of Claude Skills - modular capabilities that ext
 .claude/skills/
 ├── kids-birthday-planner/     # Plan comprehensive birthday celebrations
 ├── kids-activity-planner/     # Plan extracurricular activities for children
+├── project-planning/          # Create project specs and implementation plans for AI agents
 ├── recursive-long-context/    # Process arbitrarily long inputs using RLM approach
 └── stock-analysis/            # Analyze stocks for investment decisions
 ```
@@ -19,6 +20,9 @@ Plan comprehensive birthday celebrations including party venues, school celebrat
 
 ### Kids Activity Planner
 Plan extracurricular activities for children across multiple seasons. Handles sports, music, dance, academics, and arts while balancing budget, transportation, and scheduling constraints.
+
+### Project Planning
+Create structured project planning documents for new software projects, features, or initiatives. Gathers requirements through clarifying questions, then generates a project specification, phased implementation plan, and task tracker with current/next steps that AI coding agents can use to write code.
 
 ### Recursive Long Context (RLM)
 Process arbitrarily long documents, codebases, and datasets that exceed context windows. Based on MIT CSAIL research (arXiv:2512.24601). Includes Python implementation for programmatic long-context processing.
