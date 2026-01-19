@@ -8,7 +8,8 @@ This repository is a collection of Claude Skills - modular capabilities that ext
 .claude/skills/
 ├── kids-birthday-planner/     # Plan comprehensive birthday celebrations
 ├── kids-activity-planner/     # Plan extracurricular activities for children
-└── recursive-long-context/    # Process arbitrarily long inputs using RLM approach
+├── recursive-long-context/    # Process arbitrarily long inputs using RLM approach
+└── stock-analysis/            # Analyze stocks for investment decisions
 ```
 
 ## Available Skills
@@ -21,6 +22,9 @@ Plan extracurricular activities for children across multiple seasons. Handles sp
 
 ### Recursive Long Context (RLM)
 Process arbitrarily long documents, codebases, and datasets that exceed context windows. Based on MIT CSAIL research (arXiv:2512.24601). Includes Python implementation for programmatic long-context processing.
+
+### Stock Analysis
+Analyze stocks for investment decisions by examining historical financial ratios (P/E, EV/EBITDA, etc.), forecasted metrics, normalized earnings excluding one-time items, social media sentiment, and recent news. Features deep research capabilities for comprehensive fundamental analysis.
 
 ## Skill Structure
 
