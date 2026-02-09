@@ -1,0 +1,34 @@
+(!
+  Test 2: Try to initialize array(integer) of set of integer
+  from a FlatSetEntry POJO array where each POJO has:
+    - int key      (the array index)
+    - int element  (a single set element)
+
+  Multiple POJOs with the same key should add elements to
+  the same set. This is the "sparse" approach.
+!)
+
+model "test_pojo_flat"
+  uses "mmjava"
+
+  declarations
+    S: array(range) of set of integer
+  end-declarations
+
+  writeln("Test 2: Attempting FlatSetEntry POJO (key + element, flat)...")
+
+  initializations from "jraw:"
+    S as "flatSetData(key,element)"
+  end-initializations
+
+  ! Print results if we get here
+  forall(k in S.index.getrange) do
+    write("  S(", k, ") = {")
+    forall(v in S(k))
+      write(" ", v)
+    writeln(" }")
+  end-do
+
+  writeln("Test 2: SUCCESS - array of set of integer loaded from FlatSetEntry POJO")
+
+end-model

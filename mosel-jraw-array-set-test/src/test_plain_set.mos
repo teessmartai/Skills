@@ -1,0 +1,29 @@
+(!
+  Test 3: Baseline test - initialize a plain set of integer
+  from an int[] via jraw with noindex.
+
+  This is the simplest case and should work based on documentation.
+!)
+
+model "test_plain_set"
+  uses "mmjava"
+
+  declarations
+    S: set of integer
+  end-declarations
+
+  writeln("Test 3: Attempting plain set of integer from int[] (noindex)...")
+
+  initializations from "jraw:"
+    S as "noindex,plainSetData"
+  end-initializations
+
+  ! Print results
+  write("  S = {")
+  forall(v in S)
+    write(" ", v)
+  writeln(" }")
+
+  writeln("Test 3: SUCCESS - plain set of integer loaded from int[]")
+
+end-model

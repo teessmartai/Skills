@@ -1,0 +1,35 @@
+(!
+  Test 1: Try to initialize array(integer) of set of integer
+  from a SetEntry POJO array where each POJO has:
+    - int key      (the array index)
+    - int[] values  (the set elements)
+
+  This tests whether jraw can handle a POJO field that is int[]
+  and map it to a "set of integer" value in the array.
+!)
+
+model "test_pojo_nested"
+  uses "mmjava"
+
+  declarations
+    KEYS = 1..3
+    S: array(KEYS) of set of integer
+  end-declarations
+
+  writeln("Test 1: Attempting SetEntry POJO (key + int[] values)...")
+
+  initializations from "jraw:"
+    S as "setEntryData(key,values)"
+  end-initializations
+
+  ! Print results if we get here
+  forall(k in KEYS) do
+    write("  S(", k, ") = {")
+    forall(v in S(k))
+      write(" ", v)
+    writeln(" }")
+  end-do
+
+  writeln("Test 1: SUCCESS - array(integer) of set of integer loaded from SetEntry POJO")
+
+end-model

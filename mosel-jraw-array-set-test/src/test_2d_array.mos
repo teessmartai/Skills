@@ -1,0 +1,32 @@
+(!
+  Test 4: Try to initialize array(integer) of set of integer
+  from a Java int[][] (2D array) via jraw.
+
+  This tests whether jraw can handle nested Java arrays
+  mapped to an array of sets.
+!)
+
+model "test_2d_array"
+  uses "mmjava"
+
+  declarations
+    S: array(1..3) of set of integer
+  end-declarations
+
+  writeln("Test 4: Attempting int[][] (2D array) for array of set...")
+
+  initializations from "jraw:"
+    S as "noindex,arrayOfArrayData"
+  end-initializations
+
+  ! Print results if we get here
+  forall(k in 1..3) do
+    write("  S(", k, ") = {")
+    forall(v in S(k))
+      write(" ", v)
+    writeln(" }")
+  end-do
+
+  writeln("Test 4: SUCCESS - array of set of integer loaded from int[][]")
+
+end-model

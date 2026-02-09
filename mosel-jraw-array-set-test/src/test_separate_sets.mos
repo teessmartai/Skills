@@ -1,0 +1,42 @@
+(!
+  Test 5: Workaround - initialize individual sets separately,
+  then assemble into an array(integer) of set of integer.
+
+  Each set is loaded from a separate int[] binding.
+!)
+
+model "test_separate_sets"
+  uses "mmjava"
+
+  declarations
+    S: array(1..3) of set of integer
+
+    ! Temporary sets for loading
+    TMP1: set of integer
+    TMP2: set of integer
+    TMP3: set of integer
+  end-declarations
+
+  writeln("Test 5: Attempting separate int[] per set (workaround)...")
+
+  initializations from "jraw:"
+    TMP1 as "noindex,set1"
+    TMP2 as "noindex,set2"
+    TMP3 as "noindex,set3"
+  end-initializations
+
+  S(1) := TMP1
+  S(2) := TMP2
+  S(3) := TMP3
+
+  ! Print results
+  forall(k in 1..3) do
+    write("  S(", k, ") = {")
+    forall(v in S(k))
+      write(" ", v)
+    writeln(" }")
+  end-do
+
+  writeln("Test 5: SUCCESS - array of set of integer assembled from separate int[] bindings")
+
+end-model
