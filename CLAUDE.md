@@ -6,6 +6,7 @@ This repository is a collection of Claude Skills - modular capabilities that ext
 
 ```
 .claude/skills/
+├── ai-documenter-agent/       # Extract tribal knowledge and document problems for AI agents
 ├── kids-birthday-planner/     # Plan comprehensive birthday celebrations
 ├── kids-activity-planner/     # Plan extracurricular activities for children
 ├── project-planning/          # Create project specs and implementation plans for AI agents
@@ -14,6 +15,9 @@ This repository is a collection of Claude Skills - modular capabilities that ext
 ```
 
 ## Available Skills
+
+### AI Documenter Agent
+Extract tribal knowledge, surface hidden assumptions, and decompose problems into well-documented sub-problems with dependency graphs. Produces standardized documentation in `docs/` (business context, technical context, features, bugs) that other specialized AI agents can consume to implement solutions without making assumptions.
 
 ### Kids Birthday Planner
 Plan comprehensive birthday celebrations including party venues, school celebrations, cakes, invitations, and loot bags. Features age-based recommendations, local venue search, and budget tracking.
